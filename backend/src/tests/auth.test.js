@@ -16,4 +16,27 @@ describe("Auth API", () => {
     expect(response.body.email).toBe("test@example.com");
   });
 
+  it("should not allow duplicate email registration", async () => {
+    // First registration
+    await request(app)
+      .post("/api/auth/register")
+      .send({
+        name: "User One",
+        email: "duplicate@example.com",
+        password: "password123"
+      });
+
+    // Second registration with same email
+    const response = await request(app)
+      .post("/api/auth/register")
+      .send({
+        name: "User Two",
+        email: "duplicate@example.com",
+        password: "password123"
+      });
+
+    expect(response.statusCode).toBe(409);
+  });
+
+
 });
