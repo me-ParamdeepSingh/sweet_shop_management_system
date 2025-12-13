@@ -1,12 +1,7 @@
 import express from "express"
 const authRoute = express.Router()
+import userController from "../controllers/authController.js";
 
-authRoute.post('/register', (req,res)=>{
-    const {email} = req.body;
-    
-    return res.status(201).json({
-        email
-    });
-});
+authRoute.post('/register', userController.register);
 
 export default authRoute;
