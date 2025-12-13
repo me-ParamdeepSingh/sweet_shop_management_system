@@ -2,6 +2,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
+import authRoute from "./routes/authRoute.js"
+
 
 dotenv.config();
 
@@ -12,6 +14,7 @@ if (process.env.NODE_ENV !== "test") {
   connectDB();
 }
 
+app.use('/api/auth', authRoute);
 
 app.get("/", (req, res) => {
   res.send("Sweet Shop API running");
