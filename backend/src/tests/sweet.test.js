@@ -51,5 +51,14 @@ describe("Sweet APIs", () => {
         expect(Array.isArray(response.body)).toBe(true);
     });
 
+    it("should search sweets by name", async () => {
+        const response = await request(app)
+            .get("/api/sweets/search?name=jamun");
+
+        expect(response.statusCode).toBe(200);
+        expect(Array.isArray(response.body)).toBe(true);
+    });
+
+
 
 });
