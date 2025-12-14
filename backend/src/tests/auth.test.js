@@ -38,5 +38,16 @@ describe("Auth API", () => {
     expect(response.statusCode).toBe(409);
   });
 
+  it("should fail if the required field are missing", async ()=>{
+    const response = await request(app)
+    .post("/api/auth/register")
+    .send({
+      email: "nofields@example.com"
+      // name and password are missing
+    });
+
+    expect(response.statusCode).toBe(400);
+  })
+
 
 });
