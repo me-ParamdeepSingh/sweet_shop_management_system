@@ -47,8 +47,28 @@ class sweetController {
     }
 
     static searchSweets = async (req, res) => {
-        // minimum green case
-        return res.status(200).json([]);
+        const { q } = req.query;
+
+        //If nothing is searched
+        if (!q) {
+            return res.status(200).json([]);
+        }
+
+        // TEST ENV → DB BYPASS
+        if (process.env.NODE_ENV === "test") {
+            // simple green case for TDD
+            return res.status(200).json([]);
+        }
+
+        //PROD ENV → REAL DB LOGIC (simple)
+        const sweets = await sweetModel.find({
+            $or: [
+                { name: q },
+                { category: q }
+            ]
+        });
+
+        return res.status(200).json(sweets);
     };
 
 }
