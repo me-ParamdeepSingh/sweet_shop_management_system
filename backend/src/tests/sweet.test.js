@@ -59,6 +59,14 @@ describe("Sweet APIs", () => {
         expect(Array.isArray(response.body)).toBe(true);
     });
 
+    it("should purchase a sweet", async () => {
+        const res = await request(app)
+            .post("/api/sweets/123/purchase")
+            .send({ quantity: 2 });
+
+        expect(res.statusCode).toBe(200);
+    });
+
 
 
 });
