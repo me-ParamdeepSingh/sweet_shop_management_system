@@ -6,6 +6,13 @@ class userController {
         // fetching the data from body
         const {name, email, password} = req.body;
 
+        // missing fields check
+        if (!name || !email || !password) {
+            return res.status(400).json({
+            message: "All fields are required"
+            });
+        }
+
         // TEMPORARY: bypass DB for TDD green step
         if (process.env.NODE_ENV === "test") {
             if(userController._emails?.has(email)){
