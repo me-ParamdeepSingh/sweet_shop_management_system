@@ -6,7 +6,7 @@ class sweetController {
 
         // 
         const { name, category, price, quantity } = req.body
-        
+
         // check negative quantity
         if (quantity < 0) {
             return res.status(400).json({ message: "quantity must be valid number" })
@@ -36,15 +36,21 @@ class sweetController {
         return res.status(201).json({ sweet: savedSweet });
     };
 
-    static all_sweets = async(req,res)=>{
-        
-        if(process.env.NODE_ENV === "test"){
+    static all_sweets = async (req, res) => {
+
+        if (process.env.NODE_ENV === "test") {
             return res.status(200).json([])
         }
 
         const sweets = await sweetModel.find();
         return res.status(200).json(sweets);
     }
+
+    static searchSweets = async (req, res) => {
+        // minimum green case
+        return res.status(200).json([]);
+    };
+
 }
 
 export default sweetController
