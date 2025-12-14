@@ -17,6 +17,20 @@ describe("Sweet APIs",()=>{
         expect(response.body.quantity).toBe(50);
         
     })
+
+    it("should fail if required fields are missing", async () => {
+    const response = await request(app)
+      .post("/api/sweets")
+      .send({
+        name: "Barfi",
+        price: 15
+        // category & quantity missing
+      });
+
+    expect(response.statusCode).toBe(400);
+    expect(response.body.message).toBeDefined();
+  });
+
     it("should not allow negative quantity", async () => {
         const res = await request(app)
             .post("/api/sweets")
