@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "./config";
+import { API_URL } from "../config";
 
 function Sweets() {
   const [sweets, setSweets] = useState([]);
@@ -10,6 +10,7 @@ function Sweets() {
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+
 
   // fetch all sweets
   const fetchSweets = async () => {
@@ -69,7 +70,7 @@ function Sweets() {
 
   return (
     <div style={{ maxWidth: "800px", margin: "40px auto" }}>
-      <h2>🍬 Sweet Shop</h2>
+      <h2>Sweet Shop</h2>
 
       {/* ADD SWEET */}
       <h3>Add Sweet</h3>
