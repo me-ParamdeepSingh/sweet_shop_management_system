@@ -49,5 +49,28 @@ describe("Auth API", () => {
     expect(response.statusCode).toBe(400);
   })
 
+  it("should login user with valid credentials", async () => {
+    // first register user
+    await request(app)
+      .post("/api/auth/register")
+      .send({
+        name: "Login User",
+        email: "login@example.com",
+        password: "password123"
+      });
+
+    // then login
+    const response = await request(app)
+      .post("/api/auth/login")
+      .send({
+        email: "login@example.com",
+        password: "password123"
+      });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body.token).toBeDefined();
+  });
+
+
 
 });
