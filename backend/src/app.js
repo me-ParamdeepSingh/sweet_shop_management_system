@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
+import sweetRoute from "./routes/sweetRoute.js";
 
 
 dotenv.config();
@@ -15,6 +16,7 @@ if (process.env.NODE_ENV !== "test") {
 }
 
 app.use('/api/auth', authRoute);
+app.use('/api/sweets', sweetRoute);
 
 app.get("/", (req, res) => {
   res.send("Sweet Shop API running");
