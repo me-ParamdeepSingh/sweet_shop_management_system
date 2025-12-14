@@ -4,11 +4,14 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoute from "./routes/authRoute.js"
 import sweetRoute from "./routes/sweetRoute.js";
+import cors from "cors";
+
 
 
 dotenv.config();
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 if (process.env.NODE_ENV !== "test") {
