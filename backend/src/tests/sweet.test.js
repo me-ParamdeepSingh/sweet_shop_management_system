@@ -17,4 +17,17 @@ describe("Sweet APIs",()=>{
         expect(response.body.quantity).toBe(50);
         
     })
+    it("should not allow negative quantity", async () => {
+        const res = await request(app)
+            .post("/api/sweets")
+            .send({
+            name: "Rasgulla",
+            category: "Indian",
+            price: 10,
+            quantity: -5
+            });
+
+        expect(res.statusCode).toBe(400);
+        });
+
 })
